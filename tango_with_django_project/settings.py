@@ -52,6 +52,18 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'tango_with_django_project.urls'
 
+# The BASE_DIR variable returns the absolute path to this file
+# os.path.join ensures the correct path slashes are used regardless of the operating system
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+
+# Use the BASE_DIR/TEMPLATE_PATH variable to point to our templates files
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    TEMPLATE_PATH,
+)
+
 WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
 
@@ -70,7 +82,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
@@ -79,7 +91,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/1.7/howto/static-files/
+    STATIC_PATH,
+)
