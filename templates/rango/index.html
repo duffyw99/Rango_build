@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load staticfiles %} <!-- required to import static files -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,5 +11,6 @@
     <h1>Rango says...</h1>
     this is the main index page for the site <strong>{{ boldmessage }}</strong><br>
     <a href="/rango/about/">About</a><br>
+    <img src="{% static "images/hunter.jpg" %}" alt="Picture of a lizard on Hunter S. Thompsons's car" />
 </body>
 </html>
