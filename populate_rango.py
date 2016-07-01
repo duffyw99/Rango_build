@@ -7,21 +7,21 @@ django.setup()
 from rango.models import Category, Page
 
 def populate():
-    python_cat = add_cat('Python')
+    python_cat = add_cat("Python")
 
     add_page(cat=python_cat,
-             title = "Official Python Tutorial",
-             url = "http://docs.python.org/2/tutorial/")
+             title="Official Python Tutorial",
+             url="http://docs.python.org/2/tutorial/")
 
     add_page(cat=python_cat,
              title="How to think like a Computer Scientist",
-             url = "http://www.greenteapress.com/thinkpython/")
+             url="http://www.greenteapress.com/thinkpython/")
 
     add_page(cat=python_cat,
              title="Learn Python in 10 Minutes",
-             url = "http://www.korokithakis.net/tutorials/python/")
+             url="http://www.korokithakis.net/tutorials/python/")
 
-    django_cat = add_cat('Django')
+    django_cat = add_cat("Django")
 
     add_page(cat=django_cat,
              title="Official Django Tutorial",
@@ -51,17 +51,18 @@ def populate():
             print "- {0} - {1}".format(str(c), str(p))
 
 def add_page(cat, title, url, views=0):
-    p = Page.objects.get_or_create(category=cat, title=title) [0]
-    p.url = url
-    p.views = views
+    p = Page.objects.get_or_create(category=cat, title=title)[0]
+    p.url=url
+    p.views=views
     p.save()
     return p
 
 def add_cat(name):
-    c = Category.objects.get_or_create(name=name) [0]
+    c = Category.objects.get_or_create(name=name)[0]
+    c.save()
     return c
 
 # Start execution!
 if __name__ == '__main__':
-    print: "Here we go; the script is starting..."
+    print "Here we go; the script is starting..."
     populate()

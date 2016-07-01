@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rango</title>
+</head>
+<body>
+    {% if category %}
+    <hi>{{ category_name }}</hi>
+        {% if pages %}
+        <ul>
+            {% for page in pages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {%  endfor %}
+        </ul>
+        {% else %}
+            <strong>No pages currently in the category.</strong>
+        {% endif %}
+    {% else %}
+        {{ category_name }} is not a valid category.
+    {% endif %}
+</body>
+</html>

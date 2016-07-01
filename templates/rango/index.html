@@ -9,8 +9,17 @@
 </head>
 <body>
     <h1>Rango says...</h1>
-    this is the main index page for the site <strong>{{ boldmessage }}</strong><br>
-    <a href="/rango/about/">About</a><br>
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+            <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+    <strong>There are no categories to display.</strong>
+    {% endif %}
+
+    <a href="/rango/about/">About</a><br><br>
     <img src="{% static "images/hunter.jpg" %}" alt="Picture of a lizard on Hunter S. Thompsons's car" />
 </body>
 </html>
