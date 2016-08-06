@@ -5,17 +5,20 @@
     <title>Rango</title>
 </head>
 <body>
-    {% if category %}
     <hi>{{ category_name }}</hi>
+    {% if category %}
         {% if pages %}
         <ul>
             {% for page in pages %}
             <li><a href="{{ page.url }}">{{ page.title }}</a></li>
             {%  endfor %}
         </ul>
+
         {% else %}
             <strong>No pages currently in the category.</strong>
         {% endif %}
+        <li><a href="/rango/category/{{ category_name_slug }}/add_page/">broken New Page link</a></li>
+        <li><a href="{% url 'add_page' category.slug %}">Add a New Page</a></li>
     {% else %}
         {{ category_name }} is not a valid category.
     {% endif %}

@@ -11,14 +11,20 @@ def index(request):
     category_list = Category.objects.order_by('-likes')[:5] # the '-' in front of 'likes' means DESCENDING order
 
     # Build a dictionary of key value pairs to pass to the template engine
-    context_dict = {'categories': category_list}
+    page_list = Page.objects.order_by('-views')[:5]
+    context_dict = {'categories': category_list, 'pages': page_list}
 
     return render(request, 'rango/index.html', context_dict)
 
 def about(request):
-    return HttpResponse("<h1>This is the about page</h1><br><br>test... test")
+    message = "<a href='/rango/'>Index</a><br><br><h1>This is the about page</h1><br><br>test... test"
+    return HttpResponse(message)
 
 def category(request, category_name_slug):
+
+    # Create a context dictionary which we can pass to the template rendering engine.
+    context_dict = {'category_name_slug': category_name_slug}
+
     try:
         context_dict = {}
         # See if name slug exists, otherwise raise DoesNotExist exception
@@ -64,3 +70,29 @@ def add_category(request):
     # If the form (or the form details) is bad or no form supplied
     # Render the form with any error messages
     return render(request, 'rango/add_category.html', {'form':form})
+
+def add_page(request, category_name_slug):
+
+    try:
+        cat = Category.objects.get(slug=category_name_slug)
+    except Category.DoesNotExist:
+                cat = None
+
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        if form.is_valid():
+            if cat:
+                page = form.save(commit=False)
+                page.category = cat
+                page.views = 0
+                page.save()
+                # probably better to use a redirect here.
+                return category(request, category_name_slug)
+        else:
+            print form.errors
+    else:
+        form = PageForm()
+
+    context_dict = {'form':form, 'category':cat,'category_name_slug':category_name_slug}
+
+    return render(request, 'rango/add_page.html', context_dict)

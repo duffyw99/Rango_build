@@ -98,6 +98,25 @@
       <primary-key columns="session_key"/>
       <index name="django_session_de54fa62" unique="true" columns="expire_date"/>
     </table>
+    <table name="rango_category" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR(128)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="likes" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="views" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="slug" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <index name="rango_category_2dbcba41" unique="true" columns="slug"/>
+    </table>
+    <table name="rango_page" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(128)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="url" sqlType="VARCHAR(200)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="views" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="category_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_rango_page_1" columns="category_id" ref-table="rango_category" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="rango_page_b583a629" unique="true" columns="category_id"/>
+    </table>
     <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
       <column name="name" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="seq" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
