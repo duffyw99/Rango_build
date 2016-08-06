@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rango.models import Category, Page
+from rango.models import Category, Page, UserProfile
 
 
 # Customize admin page, break fields into sub-categories
@@ -17,3 +17,4 @@ class CategoryAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Page, PageAdmin)
+admin.site.register(UserProfile)
