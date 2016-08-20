@@ -8,7 +8,12 @@
     <title>Rango</title>
 </head>
 <body>
-    <h1>Rango says...</h1>
+    {% if user.is_authenticated %}
+    <h1>Rango says... hello {{ user.username }}</h1>
+    {% else %}
+    <h1>Rango says... howdy stranger!</h1>
+    {% endif %}
+
     {% if categories %}
         <ul>
             {% for category in categories %}
@@ -23,5 +28,6 @@
     <img src="{% static "images/hunter.jpg" %}" alt="Picture of a lizard on Hunter S. Thompsons's car" />
     <br>
     <a href="/rango/add_category/">Add a New Category</a><br>
+    <a href="/rango/login/">Login</a><br>
 </body>
 </html>
